@@ -1,3 +1,4 @@
+# 完成版
 #!/bin/bash
 set -euo pipefail
 
