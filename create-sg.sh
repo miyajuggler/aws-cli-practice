@@ -1,4 +1,4 @@
-# SG作成
+# SGを作成
 
 aws ec2 create-security-group \
     --description testtest \

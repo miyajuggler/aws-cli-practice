@@ -1,4 +1,4 @@
-# 東京リージョンで作のとき
+# 東京リージョンで作成パターン
 aws wafv2 create-ip-set \
     --name testip \
     --scope REGIONAL \
@@ -7,7 +7,7 @@ aws wafv2 create-ip-set \
     --ip-address-version IPV4 \
     --addresses 100.100.100.0/32
 
-# cloudfrontで作成のとき
+# cloudfrontで作成パターン
 aws wafv2 create-ip-set \
     --name testip3 \
     -scope CLOUDFRONT \
