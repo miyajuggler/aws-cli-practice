@@ -21,6 +21,7 @@ LOCK_TOKEN=$(aws wafv2 get-ip-set \
 aws wafv2 update-ip-set \
     --name testip \
     --scope REGIONAL \
+    --region=ap-northeast-1 \
     --id $ID \
     --addresses $IP $IPs \
     --lock-token $LOCK_TOKEN

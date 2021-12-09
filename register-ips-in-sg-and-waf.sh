@@ -30,6 +30,7 @@ for (( i=0; i < ${#IP_ARRAY[*]}; i++ )); do
         aws wafv2 update-ip-set \
             --name testip \
             --scope REGIONAL \
+            --region=ap-northeast-1 \
             --id $WAF_ID1 \
             --addresses $IPs ${IP_ARRAY[$i]} \
             --lock-token $LOCK_TOKEN

@@ -10,7 +10,7 @@ json=$(aws wafv2 get-ip-set \
     --region=ap-northeast-1 \
     --id $ID)
 
-# jqを使ってIPとトークンを取得。cloud9では初期状態では使えないため以下コマンド必須
+# jqを使ってIPとトークンを取得。jqコマンドは初期状態では使えないため以下コマンドでインストール必須
 # sudo yum -y install jq
 IPs=$(echo $json | jq -r '.IPSet.Addresses[]')
 LOCK_TOKEN=$(echo $json | jq -r '.LockToken')
@@ -19,6 +19,7 @@ LOCK_TOKEN=$(echo $json | jq -r '.LockToken')
 aws wafv2 update-ip-set \
     --name testip \
     --scope REGIONAL \
+    --region=ap-northeast-1 \
     --id $ID \
     --addresses $IP $IPs \
     --lock-token $LOCK_TOKEN
