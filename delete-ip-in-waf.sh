@@ -1,6 +1,6 @@
 # wafにあるIPを一つ削除
 
-ID=6fabdaea-ff18-4b80-ab2e-e5171ee0dcf0
+ID="6fabdaea-ff18-4b80-ab2e-e5171ee0dcf0"
 IP="2.2.2.2/32"
 
 # 現在登録されているIPを取得
