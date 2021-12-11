@@ -4,6 +4,7 @@ IP="7.7.7.7/32"
 SG_ID1="sg-079452c1fb408ef50"
 SG_ID2="sg-01b2050e756663597"
 WAF_ID="6fabdaea-ff18-4b80-ab2e-e5171ee0dcf0"
+WAF_NAME="testip"
 
 aws ec2 revoke-security-group-ingress \
     --group-id $SG_ID1 \
@@ -19,14 +20,14 @@ aws ec2 revoke-security-group-ingress \
 
 # 現在登録されているIPを取得
 IPs=$(aws wafv2 get-ip-set \
-    --name testip \
+    --name $WAF_NAME \
     --scope REGIONAL \
     --region=ap-northeast-1 \
     --id $WAF_ID \
     --query "IPSet.Addresses[*]" --output text)
 
 LOCK_TOKEN=$(aws wafv2 get-ip-set \
-    --name testip \
+    --name $WAF_NAME \
     --scope REGIONAL \
     --region=ap-northeast-1 \
     --id $WAF_ID \
@@ -37,7 +38,7 @@ echo $NEW_IP
 
 # IP更新
 aws wafv2 update-ip-set \
-    --name testip \
+    --name $WAF_NAME \
     --scope REGIONAL \
     --id $WAF_ID \
     --addresses $NEW_IPs \

@@ -11,16 +11,16 @@ for (( i=0; i < ${#IP[*]}; i++ )); do
         aws ec2 authorize-security-group-ingress \
         --group-id $SG_ID1 \
         --ip-permissions IpProtocol=tcp,FromPort=3389,ToPort=3389,IpRanges="[{CidrIp=${IP[$i]},Description="${DESCRIPTION[$i]}"}]"
-        
+
         aws ec2 authorize-security-group-ingress \
         --group-id $SG_ID2 \
         --ip-permissions IpProtocol=tcp,FromPort=443,ToPort=443,IpRanges="[{CidrIp=${IP[$i]},Description="${DESCRIPTION[$i]}"}]"
-        
+
     else
         aws ec2 authorize-security-group-ingress \
         --group-id $SG_ID1 \
         --ip-permissions IpProtocol=tcp,FromPort=3389,ToPort=3389,IpRanges="[{CidrIp=${IP[$i]}/32,Description="${DESCRIPTION[$i]}"}]"
-        
+
         aws ec2 authorize-security-group-ingress \
         --group-id $SG_ID2 \
         --ip-permissions IpProtocol=tcp,FromPort=443,ToPort=443,IpRanges="[{CidrIp=${IP[$i]}/32,Description="${DESCRIPTION[$i]}"}]"
