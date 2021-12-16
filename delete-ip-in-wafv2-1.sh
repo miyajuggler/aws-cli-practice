@@ -18,7 +18,7 @@ LOCK_TOKEN=$(aws wafv2 get-ip-set \
     --id $ID \
     --query "LockToken" --output text)
 
-NEW_IPs=$(echo ${IPs//${IP}/}) # www_hoge_com
+NEW_IPs=$(echo ${IPs//${IP}/})
 
 # IP更新
 aws wafv2 update-ip-set \

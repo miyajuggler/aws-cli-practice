@@ -26,6 +26,7 @@ esac
 
 if [[ `echo $IPs | grep $IP` ]] ; then
     echo 'ありました'
+    echo '処理を終了します.'
     exit
 fi
 
@@ -53,7 +54,7 @@ aws wafv2 update-ip-set \
     --addresses $IP $IPs \
     --lock-token $LOCK_TOKEN
 
-echo '処理終了'
+echo '更新終了しました.'
 
 # 確認用にIP一覧取得
 NEW_IPs=$(aws wafv2 get-ip-set \
@@ -68,3 +69,5 @@ case "$yn" in
     [yY]*) echo $NEW_IPs | xargs -n1;;
     *)  "処理を終了します." ; exit ;;
 esac
+
+echo '処理を終了します.'
