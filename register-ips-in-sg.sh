@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # SGにIP登録。配列ver
 
 # 変数格納

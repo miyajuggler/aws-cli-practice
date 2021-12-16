@@ -1,5 +1,7 @@
-# SGを作成
+#!/bin/bash
+set -euo pipefail
 
+# SGを作成
 aws ec2 create-security-group \
     --description testtest \
     --group-name test-sg \

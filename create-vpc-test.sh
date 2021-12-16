@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # 直書きパターン
 # VPC作成
 aws ec2 create-vpc \

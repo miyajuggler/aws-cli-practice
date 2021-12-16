@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # SGにあるIPを一つ指定して削除
 
 IP="7.7.7.7/32"

@@ -1,4 +1,7 @@
-# SGとWAFにあるIPを一つ指定して削除
+#!/bin/bash
+set -euo pipefail
+
+# SGとWAFにあるIPを複数削除
 
 IP_ARRAY=("5.5.5.5/32" "6.6.6.6/32" "7.7.7.7/32" "8.8.8.8/32" "9.9.9.9/32")
 SG_ID1="sg-079452c1fb408ef50"
@@ -20,19 +23,14 @@ for (( i=0; i < ${#IP_ARRAY[*]}; i++ )); do
         --cidr ${IP_ARRAY[$i]}
 
     # 現在登録されているIPを取得
-    IPs=$(aws wafv2 get-ip-set \
-    --name $WAF_NAME \
-    --scope REGIONAL \
-    --region=ap-northeast-1 \
-    --id $WAF_ID \
-    --query "IPSet.Addresses[*]" --output text)
-
-    LOCK_TOKEN=$(aws wafv2 get-ip-set \
+    json=$(aws wafv2 get-ip-set \
         --name $WAF_NAME \
         --scope REGIONAL \
         --region=ap-northeast-1 \
-        --id $WAF_ID \
-        --query "LockToken" --output text)
+        --id $WAF_ID)
+
+    IPs=$(echo $json | jq -r '.IPSet.Addresses[]')
+    LOCK_TOKEN=$(echo $json | jq -r '.LockToken')
 
     # リストから指定のIPを省く
     NEW_IPs=$(echo ${IPs//${IP_ARRAY[$i]}/})

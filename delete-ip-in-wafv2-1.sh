@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # wafにあるIPを一つ削除
 
 ID="6fabdaea-ff18-4b80-ab2e-e5171ee0dcf0"
@@ -18,7 +21,7 @@ LOCK_TOKEN=$(aws wafv2 get-ip-set \
     --id $ID \
     --query "LockToken" --output text)
 
-NEW_IPs=$(echo ${IPs//${IP}/}) # www_hoge_com
+NEW_IPs=$(echo ${IPs//${IP}/})
 
 # IP更新
 aws wafv2 update-ip-set \
