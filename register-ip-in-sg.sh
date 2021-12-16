@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # 一つだけSGにIP登録
 
 aws ec2 authorize-security-group-ingress \

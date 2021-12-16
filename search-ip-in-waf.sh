@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 IP="7.7.7.5/32"
 SG_ID1="sg-079452c1fb408ef50"
 SG_ID2="sg-01b2050e756663597"

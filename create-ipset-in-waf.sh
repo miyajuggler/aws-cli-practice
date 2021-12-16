@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # 東京リージョンで作成パターン
 aws wafv2 create-ip-set \
     --name testip \

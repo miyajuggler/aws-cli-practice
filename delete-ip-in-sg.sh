@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # SGにあるIPを一つ指定して削除
 SG_ID1="sg-079452c1fb408ef50"
 IP="8.8.8.8/32"

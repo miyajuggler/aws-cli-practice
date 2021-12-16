@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # wafにあるIPを一つ削除
 
 ID="6fabdaea-ff18-4b80-ab2e-e5171ee0dcf0"

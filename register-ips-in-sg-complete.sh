@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # SGにIP登録。/があろうとなかろうと場合分けで登録できる
 
 # 変数格納
