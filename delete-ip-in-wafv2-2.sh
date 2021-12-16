@@ -22,6 +22,7 @@ NEW_IPs=$(echo ${IPs//${IP}/})
 aws wafv2 update-ip-set \
     --name $WAF_NAME \
     --scope REGIONAL \
+    --region=ap-northeast-1 \
     --id $WAF_ID \
     --addresses $NEW_IPs \
     --lock-token $LOCK_TOKEN

@@ -11,6 +11,7 @@ WAF_NAME="testip"
 IPs=$(aws wafv2 get-ip-set \
     --name $WAF_NAME \
     --scope REGIONAL \
+    --region=ap-northeast-1 \
     --id $ID \
     --query "IPSet.Addresses[*]" --output text)
 
@@ -26,7 +27,8 @@ NEW_IPs=$(echo ${IPs//${IP}/})
 # IP更新
 aws wafv2 update-ip-set \
     --name $WAF_NAME \
-    --scope REGIONAL \
+    --scope REGIONAL
+    --region=ap-northeast-1 \\
     --id $ID \
     --addresses $NEW_IPs \
     --lock-token $LOCK_TOKEN

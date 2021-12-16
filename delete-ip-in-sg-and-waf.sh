@@ -22,19 +22,14 @@ aws ec2 revoke-security-group-ingress \
     --cidr ${IP}
 
 # 現在登録されているIPを取得
-IPs=$(aws wafv2 get-ip-set \
+json=$(aws wafv2 get-ip-set \
     --name $WAF_NAME \
     --scope REGIONAL \
     --region=ap-northeast-1 \
-    --id $WAF_ID \
-    --query "IPSet.Addresses[*]" --output text)
+    --id $WAF_ID)
 
-LOCK_TOKEN=$(aws wafv2 get-ip-set \
-    --name $WAF_NAME \
-    --scope REGIONAL \
-    --region=ap-northeast-1 \
-    --id $WAF_ID \
-    --query "LockToken" --output text)
+IPs=$(echo $json | jq -r '.IPSet.Addresses[]')
+LOCK_TOKEN=$(echo $json | jq -r '.LockToken')
 
 NEW_IPs=$(echo ${IPs//${IP}/})
 echo $NEW_IP
