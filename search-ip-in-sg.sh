@@ -25,6 +25,6 @@ case "$yn" in
 esac
 
 if [[ `echo $IPs | grep $IP` ]] ; then
-  echo 'ありました'
-  exit
+    echo 'ありました'
+    exit
 fi
