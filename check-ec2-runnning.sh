@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # インスタンスが起動しているのかどうかチェック
 # []でも[*]でもどちらでも大丈夫
 aws ec2 describe-instances \
