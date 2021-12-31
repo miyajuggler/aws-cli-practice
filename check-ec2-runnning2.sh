@@ -8,6 +8,6 @@ aws ec2 describe-instances \
     --query "Reservations[].Instances[].{
     Name:Tags[?Key==\`Name\`]|[0].Value,
     Id:InstanceId,
-    Status:State.Name
+    State:State.Name
 }" \
 |  jq '.[]' | jq -rs '(.[0]|keys_unsorted),map([.[]])[]|@csv'
